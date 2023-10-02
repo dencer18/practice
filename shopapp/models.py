@@ -15,8 +15,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     archived = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.name
+    def __str__(self)-> str:
+        return f"Product(pk={self.pk}, name={self.name!r})"
 
     
 class Order(models.Model):
