@@ -9,7 +9,7 @@ from .models import Product, Order
 
 class OrderInline(admin.TabularInline):
     model = Product.orders.through
-
+    extra=0
 
 @admin.action(description="Archived product")
 def mark_archived(modeladmin: admin.ModelAdmin, request: HttpRequest, queryset: QuerySet):
@@ -55,10 +55,13 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
         if len(obj.description) < 48:
             return obj.description
         return obj.description[:48] + "..."
+    
+    description_short.short_description = "Short descr"
 
 
 class ProductInline(admin.StackedInline):
     model = Order.products.through
+    extra=0
 
 
 @admin.register(Order)
