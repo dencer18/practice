@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.core.files.storage import FileSystemStorage
 
+from .forms import UserBioForm, UploadFileForm
+
 
 def process_get_view(request: HttpRequest)->HttpResponse:
     a = request.GET.get("a", "")
@@ -17,17 +19,25 @@ def process_get_view(request: HttpRequest)->HttpResponse:
 
 
 def user_form(request:HttpRequest)->HttpResponse:
-    return render(request, "requestdataapp/user-bio-form.html")
+    context = {
+        "form": UserBioForm(),
+    }
+    return render(request, "requestdataapp/user-bio-form.html", context=context)
+
 
 def handle_file_upload(request: HttpRequest)->HttpResponse:
-    if request.method == "POST" and request.FILES.get("myfile"):
-        myfile = request.FILES["myfile"]
-        fs = FileSystemStorage()
-        filesize = myfile.size
-        if filesize <= 1000000:
-            filename = fs.save(myfile.name, myfile)
+    if request.method == "POST":
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            #myfile = request.FILES["myfile"]
+            myfile = form.cleaned_data["file"]
+            fs = FileSystemStorage()
+            filename=fs.save(myfile.name, myfile)
             print("saved file", filename)
-        else:
-            print(f"file size exceeded more than 1mb, size of file {int(filesize/1000000)} Mb")
-        
-    return render(request, "requestdataapp/file-upload.html")
+    else:
+          form = UploadFileForm()
+    
+    context={
+        "form": form,
+    } 
+    return render(request, "requestdataapp/file-upload.html", context=context)

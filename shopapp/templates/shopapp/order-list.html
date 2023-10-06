@@ -24,5 +24,10 @@
         {% empty %}
             No products yet
         {% endfor%}
-    </div> 
+    </div>
+    <div>
+        <a href={% url 'shopapp:order-create' %}>
+        Create a new order
+        </a>
+    </div 
 {% endblock %}

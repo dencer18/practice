@@ -1,5 +1,6 @@
-from django.http import HttpRequest, HttpResponseForbidden
-import datetime
+from datetime import datetime, timedelta
+from http import HTTPStatus
+from django.http import HttpRequest, HttpResponse
 
 def setup_user_agent_on_request_middleware(get_response):
     print("Initial call")
@@ -31,28 +32,38 @@ class CountRequestsMiddleware:
         self.exceptions_count += 1
         print("got", self.exceptions_count, "exceptions so far")
 
-class Throttling:
+THROTTLING_RATE_MS = 1500
+
+class ThrottlingMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
-        self.ip_dict=dict()
-        self.date_time=datetime.datetime.now()
-        self.time_between = 0
-        
+        self.bucket: dict[str, datetime] = {}
+        self.rate_ms = THROTTLING_RATE_MS
+
+    @classmethod
+    def get_client_ip(cls, request: HttpRequest):
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(",")[0]
+        else:
+            ip = request.META.get("REMOTE_ADDR")
+        return ip
+
+    def request_is_allowed(self, client_ip: str) -> bool:
+        now = datetime.utcnow()
+        last_access = self.bucket.get(client_ip)
+        if not last_access:
+            return True
+        if (now - last_access) > timedelta(milliseconds=self.rate_ms):
+            return True
+
+        return False
+
     def __call__(self, request: HttpRequest):
-        IP_client=request.META["REMOTE_ADDR"]
-        if  IP_client in self.ip_dict:
-            self.date_time = self.ip_dict[IP_client]
-
-        self.ip_dict[IP_client]=datetime.datetime.now()
-        
-        print("IP client",IP_client)
-        print("Last date", self.ip_dict[IP_client])
-        self.time_between=int(self.ip_dict[IP_client].timestamp())-int(self.date_time.timestamp())
-        print("time between requests, sec", self.time_between)
-
-        if self.time_between < 10:
-            return HttpResponseForbidden()
-       
-        response = self.get_response(request)
-
+        client_ip = self.get_client_ip(request)
+        if self.request_is_allowed(client_ip):
+            response = self.get_response(request)
+            self.bucket[client_ip] = datetime.utcnow()
+        else:
+            response = HttpResponse("Rate limit exceeded", status=HTTPStatus.TOO_MANY_REQUESTS)
         return response

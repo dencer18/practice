@@ -50,9 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'requestdataapp.middlewares.setup_user_agent_on_request_middleware',
-    'requestdataapp.middlewares.CountRequestsMiddleware',
-     'requestdataapp.middlewares.Throttling',
+    #'requestdataapp.middlewares.setup_user_agent_on_request_middleware',
+    #'requestdataapp.middlewares.CountRequestsMiddleware',
+    #'requestdataapp.middlewares.ThrottlingMiddleware',
     
 ]
 
