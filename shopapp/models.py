@@ -5,7 +5,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ['name', 'price']
-        #d b_table ="tech_products"
+        # b_table ="tech_products"
         # verbose_name_plural="products"
 
     name = models.CharField(max_length=100)
