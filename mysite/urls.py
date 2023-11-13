@@ -16,10 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include('shopapp.urls', namespace='shopapp')),
     path('req/', include('requestdataapp.urls', namespace='requestdataapp')),
+    path('myauth/', include('myauth.urls', namespace='myauth')),
+    path('accounts/login/', 
+        LoginView.as_view(
+        template_name="myauth/login.html",
+        redirect_authenticated_user=True,
+        ),
+         name="login"),
+    path('accounts/logout/',
+        LogoutView.as_view(
+        # next_page=reverse_lazy("login")
+        ),
+        name='logout'),
 
 ]
