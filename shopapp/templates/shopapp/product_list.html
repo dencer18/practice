@@ -25,10 +25,11 @@
         {% endfor%}
         </table>
     </div>
-    <div>
-        <a href={% url 'shopapp:product-create' %}>
-        Create a new product
-        </a>
-    </div
-
+    {% if perms.shopapp.add_product %}
+        <div>
+            <a href={% url 'shopapp:product-create' %}>
+            Create a new product
+            </a>
+        </div
+    {% endif %}
 {% endblock %}

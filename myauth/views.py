@@ -4,6 +4,8 @@ from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from .models import Profile
+from django.contrib.auth.decorators import permission_required, user_passes_test
 
 # class MyLogoutView(LogoutView):
 #     next_page=reverse_lazy("accounts:login")
@@ -18,6 +20,7 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         responce = super().form_valid(form)
+        Profile.objects.create(user=self.object)
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password1")
         user = authenticate(
@@ -26,8 +29,10 @@ class RegisterView(CreateView):
             password=password, 
         )
         login(request=self.request, user=user)
+        
         return responce
-
+        
+#@user_passes_test(lambda u: u.is_superuser)
 def set_cookie_view(request: HttpRequest)->HttpResponse:
     response = HttpResponse("Cookie set")
     response.set_cookie("fizz", "buzz", max_age=3600)
@@ -37,6 +42,7 @@ def get_cookie_view(request: HttpRequest)->HttpResponse:
     value = request.COOKIES.get("fizz", "default")
     return HttpResponse(f"Cookie value: {value!r}")
 
+@permission_required("myauth.view_profile", raise_exception=True)
 def set_session_view(request: HttpRequest)->HttpResponse:
     request.session["foobar"]="spameggs"
     return HttpResponse("Session set!")

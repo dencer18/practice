@@ -134,5 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS =['https://*.runcode.io']
 
 LOGIN_REDIRECT_URL=reverse_lazy("myauth:about-me")
+#LOGIN_URL = reverse_lazy("myauth:login")
 
 

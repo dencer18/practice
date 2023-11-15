@@ -25,6 +25,7 @@ from django.views.generic import (
                                 UpdateView,
                                 DeleteView,
                                 )
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 #=========================================================
 #1. Products
 #=========================================================
@@ -37,20 +38,32 @@ class ProductDetailView(DetailView):
     model = Product
     context_object_name = "product"
 
-class ProductCreateView(CreateView):
+class ProductCreateView(PermissionRequiredMixin, CreateView):
+    permission_required="shopapp.view_order"
     model=Product
     fields="name", "price", "description", "discount"
-    success_url = reverse_lazy("shopapp:product-list")    
+    success_url = reverse_lazy("shopapp:product-list")
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
     
-class ProductUpdateView(UpdateView):
-     model = Product
-     fields="name", "price", "discount"
-     template_name_suffix="_update_form"
-     def get_success_url(self):
-         return reverse(
-             "shopapp:product-detail",
-             kwargs={"pk": self.object.pk},
-         )
+class ProductUpdateView(PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Product
+    fields="name", "price", "discount"
+    template_name_suffix="_update_form"
+    permission_required="shopapp.change_product"
+    
+    def test_func(self):
+        prodcont = self.get_object()
+        return self.request.user == prodcont.created_by
+
+    def get_success_url(self):
+        return reverse(
+            "shopapp:product-detail",
+            kwargs={"pk": self.object.pk},
+        )
 
 class ProductArchivedView(DeleteView):
     model = Product
@@ -70,14 +83,15 @@ class ProductDeleteView(DeleteView):
 #2. Orders
 #=========================================================
 
-class OrdersListView(ListView):
+class OrdersListView(LoginRequiredMixin,ListView):
     queryset = (
         Order.objects
         .select_related("user")
         .prefetch_related("products")
     )
 
-class OrderDetailView(DetailView):
+class OrderDetailView(PermissionRequiredMixin, DetailView):
+    permission_required="shopapp.view_order"
     queryset = (
         Order.objects
         .select_related("user")
