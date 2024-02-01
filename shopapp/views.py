@@ -7,7 +7,7 @@ from django.shortcuts import (
                             )
 from django.urls import reverse_lazy
 from django.shortcuts import HttpResponse
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.contrib.auth.models import Group
 from .models import Product, Order
 from .forms import (
@@ -39,7 +39,7 @@ class ProductDetailView(DetailView):
     context_object_name = "product"
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
-    permission_required="shopapp.view_order"
+    permission_required="shopapp.add_product" 
     model=Product
     fields="name", "price", "description", "discount"
     success_url = reverse_lazy("shopapp:product-list")
@@ -156,4 +156,20 @@ class GroupsListView(View):
         if form.is_valid():
             form.save()
         return redirect(request.path)
+
+
+class ProductsDataExportView(View):
+    def get(self, request: HttpRequest)-> JsonResponse:
+        products = Product.objects.order_by("pk").all()
+        products_data = [
+            {
+                "pk": product.pk,
+                "name": product.name,
+                "price": product.price,
+                "archived": product.archived,
+            }
+            for product in products
+        ]
+        return JsonResponse({"products": products_data})
+
 

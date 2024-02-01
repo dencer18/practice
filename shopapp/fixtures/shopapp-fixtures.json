@@ -1,0 +1,267 @@
+[
+  {
+    "model": "shopapp.product",
+    "pk": 4,
+    "fields": {
+      "name": "Smartphone",
+      "description": "",
+      "price": "990.00",
+      "discount": 25,
+      "created_at": "2023-09-27T08:43:00.902Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 5,
+    "fields": {
+      "name": "Router 2",
+      "description": "WIFI",
+      "price": "99.00",
+      "discount": 0,
+      "created_at": "2023-10-06T06:38:45.167Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 6,
+    "fields": {
+      "name": "Tablet",
+      "description": "gkjhk great",
+      "price": "767.00",
+      "discount": 0,
+      "created_at": "2023-10-06T06:46:12.842Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 7,
+    "fields": {
+      "name": "Phon3",
+      "description": "kjhklkjl",
+      "price": "5660.00",
+      "discount": 10,
+      "created_at": "2023-10-06T09:06:19.152Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 12,
+    "fields": {
+      "name": "ghfdhjgfjg",
+      "description": "hjfghjghfj",
+      "price": "100.00",
+      "discount": 0,
+      "created_at": "2023-10-26T08:58:06.225Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 13,
+    "fields": {
+      "name": "lkjl;k",
+      "description": "lk;lk;kl",
+      "price": "200.00",
+      "discount": 10,
+      "created_at": "2023-10-26T08:59:18.060Z",
+      "archived": true,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 14,
+    "fields": {
+      "name": ";l'l;lk;'jhghjghjgh",
+      "description": "yujgjy",
+      "price": "300.00",
+      "discount": 50,
+      "created_at": "2023-10-26T09:01:55.983Z",
+      "archived": true,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 15,
+    "fields": {
+      "name": "fdgdg",
+      "description": "hgfhgfhgf",
+      "price": "100.00",
+      "discount": 0,
+      "created_at": "2023-11-07T13:52:11.111Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 16,
+    "fields": {
+      "name": "hjgfhj++++++++++",
+      "description": "jhkhjkg",
+      "price": "1.00",
+      "discount": 0,
+      "created_at": "2023-11-07T13:53:29.077Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 17,
+    "fields": {
+      "name": "new prod",
+      "description": "hgjfghjfghjf",
+      "price": "100000.00",
+      "discount": 10,
+      "created_at": "2023-11-08T06:34:25.892Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 19,
+    "fields": {
+      "name": "fdgdgd",
+      "description": "fdgdhdh",
+      "price": "0.00",
+      "discount": 10,
+      "created_at": "2023-11-14T13:48:10.903Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 20,
+    "fields": {
+      "name": "111111111",
+      "description": "22222222222",
+      "price": "0.00",
+      "discount": 40,
+      "created_at": "2023-11-14T13:48:27.532Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 21,
+    "fields": {
+      "name": "22222",
+      "description": "2222222222",
+      "price": "0.00",
+      "discount": 0,
+      "created_at": "2023-11-14T14:01:55.939Z",
+      "archived": false,
+      "created_by": 5
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 22,
+    "fields": {
+      "name": "dfgdfg11111111111",
+      "description": "dfghgdfhfj",
+      "price": "345345.00",
+      "discount": 0,
+      "created_at": "2024-01-30T16:52:40.321Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 23,
+    "fields": {
+      "name": "Nik_kuhfdsuf",
+      "description": "fdfgbdgfbdg",
+      "price": "234.00",
+      "discount": 10,
+      "created_at": "2024-01-30T17:11:00.513Z",
+      "archived": false,
+      "created_by": 5
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 1,
+    "fields": {
+      "delivery_adress": "Flhtcc klkjhljkl",
+      "promocode": "jkljkl",
+      "created_at": "2023-09-28T08:08:09.961Z",
+      "user": 1,
+      "products": [ 7, 4 ]
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 2,
+    "fields": {
+      "delivery_adress": "Moskva ul. Pupkin, 23",
+      "promocode": "SALE10",
+      "created_at": "2023-09-28T08:58:54.547Z",
+      "user": 1,
+      "products": [  ]
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 3,
+    "fields": { "delivery_adress": "", "promocode": "", "created_at": "2023-10-06T09:51:23.308Z", "user": 1, "products": [ 7 ] }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 4,
+    "fields": {
+      "delivery_adress": "hjhgjghj",
+      "promocode": "ghjghjgj",
+      "created_at": "2023-10-06T09:51:55.413Z",
+      "user": 1,
+      "products": [  ]
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 5,
+    "fields": {
+      "delivery_adress": "Order 2",
+      "promocode": "SALE100",
+      "created_at": "2023-10-06T09:57:30.573Z",
+      "user": 1,
+      "products": [  ]
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 6,
+    "fields": { "delivery_adress": "hjgggk", "promocode": "", "created_at": "2023-11-07T14:21:33.350Z", "user": 1, "products": [ 7 ] }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 7,
+    "fields": { "delivery_adress": "hjgggk", "promocode": "", "created_at": "2023-11-07T14:22:05.311Z", "user": 1, "products": [ 7 ] }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 11,
+    "fields": {
+      "delivery_adress": "jhkfkhjk",
+      "promocode": "jkhjkhj",
+      "created_at": "2024-01-29T09:13:21.876Z",
+      "user": 3,
+      "products": [ 21, 14, 7 ]
+    }
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": { "name": "Writers", "permissions": [ 9, 10, 11, 12 ] }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": { "name": "Editors", "permissions": [ 1, 2, 3, 4 ] }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": { "name": "SomeGroup", "permissions": [  ] }
+  },
+  {
+    "model": "auth.group",
+    "pk": 4,
+    "fields": { "name": "profile_manager", "permissions": [ 40 ] }
+  }
+]

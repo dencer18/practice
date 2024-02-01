@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&=97i*-y&@a=z$py9014q$4)-xjlqfu6+yibxbpbby$e-=9kcp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-dencer18-practice-c42tay8rfo4.ws-eu107.gitpod.io']
 
 
 # Application definition
@@ -131,9 +131,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS =['https://*.runcode.io']
+CSRF_TRUSTED_ORIGINS =['https://*.gitpod.io']
 
 LOGIN_REDIRECT_URL=reverse_lazy("myauth:about-me")
-#LOGIN_URL = reverse_lazy("myauth:login")
+LOGIN_URL = reverse_lazy("login")
 
 

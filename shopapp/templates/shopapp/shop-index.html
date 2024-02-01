@@ -7,6 +7,10 @@
 {% block body %}
     <h1> Hello Shop Index</h1>
     <div>
+        <p></p><a href={% url 'shopapp:order-list' %}>Order list</a></p>
+        <p></p><a href={% url 'shopapp:product-list' %}>Product list</a></p>
+    </div> 
+    <div>
         <ul>
             {% for name, price in products %}
                 <li> {{ name }} - {{ name|length }} letter - for $ {{ price|floatformat:"2" }}</li>
@@ -25,6 +29,9 @@
     <div>
         {% lorem 3 p random %}
     </div>
+
+    
+
 {% endblock %}
 
 

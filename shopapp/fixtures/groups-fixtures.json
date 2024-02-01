@@ -1,0 +1,7 @@
+[
+  {
+    "model": "auth.user_groups",
+    "pk": 1,
+    "fields": { "user": 3, "group": 4 }
+  }
+]
