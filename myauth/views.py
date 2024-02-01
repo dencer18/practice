@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .models import Profile
 from django.views import View
-from django.contrib.auth.decorators import permission_required, user_passes_test
+from django.contrib.auth.decorators import permission_required
 
 # class MyLogoutView(LogoutView):
 #     next_page=reverse_lazy("accounts:login")
@@ -33,7 +33,6 @@ class RegisterView(CreateView):
         
         return responce
         
-#@user_passes_test(lambda u: u.is_superuser)
 def set_cookie_view(request: HttpRequest)->HttpResponse:
     response = HttpResponse("Cookie set")
     response.set_cookie("fizz", "buzz", max_age=3600)
