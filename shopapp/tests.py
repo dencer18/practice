@@ -129,11 +129,11 @@ class OrdersListViewTestCase(TestCase):
 
 class ProductsExportViewTestCase(TestCase):
     fixtures = [
-        "product-fixtures.json",
         "user-fixtures.json",
         "groups-fixtures.json",
         "group-fixtures.json",
         "permission-fixtures.json",
+        "product-fixtures.json",
     ]
 
     def test_get_products_view(self):
@@ -193,16 +193,17 @@ class OrderDetailViewTestCase(TestCase):
 
 class OrderExportTestCase(TestCase):
     fixtures = [
-        "order-fixtures.json",
-        "product-fixtures.json",
-        "user-fixtures.json",
-        "groups-fixtures.json",
         "group-fixtures.json",
+        "groups-fixtures.json",
+        "user-fixtures.json",
         "permission-fixtures.json",
+        "product-fixtures.json",
+        "order-fixtures.json",
     ]
 
     @classmethod
     def setUpClass(cls):
+        super().setUpClass() 
         cls.user = User.objects.create_superuser(
             username="Bob", password="Jbez7NDCbhc22", email="dencer@gmail.com"
         )
@@ -222,9 +223,9 @@ class OrderExportTestCase(TestCase):
         orders = Order.objects.order_by("pk").all()
         expected_data = [
             {
+                "ID": order.user.id,
                 "delivery_adress": order.delivery_adress,
                 "promocode": order.promocode,
-                "user": order.user,
                 "products": [product.pk for product in order.products.all()],
             }
             for order in orders
